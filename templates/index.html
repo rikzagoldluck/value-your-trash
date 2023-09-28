@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>QR Code Reader</title>
+  </head>
+  <body>
+    <h1>QR Code Reader</h1>
+    <video id="video" width="640" height="480" autoplay></video>
+    <canvas id="canvas" style="display: none"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='code.jsqr.de_jsqr-0.2-min.js') }}"></script>
+    <script src="{{ url_for('static', filename='qr_reader.js') }}"></script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+{% extends "layout.html" %} {% block content %}
+<div
+  class="bg-gradient-to-b from-transparent to-blue-50 dark:to-blue-900 max-w-screen-sm min-h-screen w-full"
+>
+  <div class="w-full h-full" id="reader"></div>
+  <!-- <p id="res" class="w-full h-full"></p> -->
+</div>
+{% endblock %} {% block script %}
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='reader.js') }}"></script>
+{% endblock %}

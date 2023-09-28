@@ -1,0 +1,225 @@
+{% extends "layout.html" %} {% block content %}
+
+<div
+  class="bg-gradient-to-b from-transparent to-blue-50 dark:to-blue-900 w-full min-h-screen px-5 md:px-10 md:py-5 pb-5"
+>
+  <div class="md:hidden mb-4">
+    <div class="flex items-center justify-between space-y-3 py-4">
+      <div class="flex mt-3 items-center align-middle">
+        <a class="" href="/">
+          <svg
+            class="w-5 h-5 text-gray-800 dark:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 10"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 5H1m0 0 4 4M1 5l4-4"
+            />
+          </svg>
+        </a>
+      </div>
+      <p class="text-xl font-medium">Profil</p>
+
+      {% if util.user %}
+
+      <a class="mt-3" href="/logout">
+        <svg
+          class="w-5 h-5 text-gray-800 dark:text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 16 16"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3"
+          />
+        </svg>
+      </a>
+      {% else %}
+      <a class="mt-3" href="/login">
+        <svg
+          class="w-5 h-5 text-gray-800 dark:text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 18 15"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 7.5h11m0 0L8 3.786M12 7.5l-4 3.714M12 1h3c.53 0 1.04.196 1.414.544.375.348.586.82.586 1.313v9.286c0 .492-.21.965-.586 1.313A2.081 2.081 0 0 1 15 14h-3"
+          />
+        </svg>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="flex flex-col items-center mb-5">
+    {% if util.user %}
+    <img
+      class="w-24 h-24 mb-3 rounded-full shadow-lg"
+      src="{{ url_for('static', filename='img/user.svg')  }}"
+      alt="user"
+    />
+    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+      {{util.user.username}}
+    </h5>
+    <span class="text-sm text-gray-500 dark:text-gray-400"
+      >{{util.user.badge}}</span
+    >
+    <div class="flex mt-4 space-x-3 md:mt-6">
+      <div
+        class="inline-flex items-center px-4 py-2 font-medium text-center text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 rounded-lg dark:bg-blue-600"
+      >
+        Poin Ku
+        <p class="ml-3 font-bold">{{util.user.point}}</p>
+      </div>
+    </div>
+    {% else %}
+    <svg
+      class="w-24 h-24 text-gray-800 dark:text-white"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 20 20"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M10 19a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 11 14H9a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 10 19Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+      />
+    </svg>
+    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+      Username Ku
+    </h5>
+    <span class="text-sm text-gray-500 dark:text-gray-400">Badge Ku</span>
+    <div class="flex mt-4 space-x-3 md:mt-6">
+      <div
+        class="inline-flex items-center px-4 py-2 font-medium text-center text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 rounded-lg dark:bg-blue-600"
+      >
+        Poin Ku
+        <p class="ml-3 font-bold">0</p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <div
+    class="w-full text-gray-900 bg-white border border-gray-200 rounded-t-3xl shadow-xl dark:bg-gray-700 dark:border-gray-600 dark:text-white pb-24 max-w-md mx-auto"
+  >
+    <a
+      class="relative inline-flex items-center w-full h-12 px-5 md:px-10 py-2 font-medium rounded-t-3xl border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white hover:cursor-pointer"
+    >
+      <svg
+        class="w-5 h-5 mr-2.5 text-gray-800 dark:text-white"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 20 18"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4.109 17H1v-2a4 4 0 0 1 4-4h.87M10 4.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm7.95 2.55a2 2 0 0 1 0 2.829l-6.364 6.364-3.536.707.707-3.536 6.364-6.364a2 2 0 0 1 2.829 0Z"
+        />
+      </svg>
+      Edit
+    </a>
+    <a
+      class="relative inline-flex items-center w-full h-12 px-5 md:px-10 py-2 font-medium border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white hover:cursor-pointer"
+    >
+      <svg
+        class="w-5 h-5 mr-2.5 text-gray-800 dark:text-white"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 18 20"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 4H1m3 4H1m3 4H1m3 4H1m6.071.286a3.429 3.429 0 1 1 6.858 0M4 1h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Zm9 6.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"
+        />
+      </svg>
+      Alamat Pengantaran
+    </a>
+    <a
+      class="relative inline-flex items-center w-full h-12 px-5 md:px-10 py-2 font-medium border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white hover:cursor-pointer"
+    >
+      <svg
+        class="w-5 h-5 mr-2.5 text-gray-800 dark:text-white"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 21 20"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m11.479 1.712 2.367 4.8a.532.532 0 0 0 .4.292l5.294.769a.534.534 0 0 1 .3.91l-3.83 3.735a.534.534 0 0 0-.154.473l.9 5.272a.535.535 0 0 1-.775.563l-4.734-2.49a.536.536 0 0 0-.5 0l-4.73 2.487a.534.534 0 0 1-.775-.563l.9-5.272a.534.534 0 0 0-.154-.473L2.158 8.48a.534.534 0 0 1 .3-.911l5.294-.77a.532.532 0 0 0 .4-.292l2.367-4.8a.534.534 0 0 1 .96.004Z"
+        />
+      </svg>
+      Favorit Ku
+    </a>
+    <a
+      class="relative inline-flex items-center w-full h-12 px-5 md:px-10 py-2 font-medium border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white hover:cursor-pointer"
+    >
+      <svg
+        class="w-5 h-5 mr-2.5 text-gray-800 dark:text-white"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 18 20"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 4H1m3 4H1m3 4H1m3 4H1m6.071.286a3.429 3.429 0 1 1 6.858 0M4 1h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Zm9 6.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"
+        />
+      </svg>
+      Riwayat Penukaran
+    </a>
+    <a
+      class="relative inline-flex items-center w-full h-12 px-5 md:px-10 py-2 font-medium border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white hover:cursor-pointer"
+    >
+      <svg
+        class="w-5 h-5 mr-2.5 text-gray-800 dark:text-white"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 20 20"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+        />
+      </svg>
+      Riwayat Pembelian
+    </a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,110 @@
+{% extends "layout.html" %} {% block content %}
+<div
+  class="bg-gradient-to-b from-blue-50 to-transparent dark:from-blue-900 w-full h-full px-5 md:py-5 md:px-10"
+>
+  <div class="md:hidden">
+    <div
+      class="flex flex-row align-middle items-center justify-between space-y-3 py-4"
+    >
+      <div>
+        <form class="flex items-center">
+          <label for="simple-search" class="sr-only"
+            >Cari barang kamu disini</label
+          >
+          <div class="relative w-full">
+            <div
+              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+            >
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                fill="currentColor"
+                viewbox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <input
+              type="text"
+              id="simple-search"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              placeholder="Cari barang kamu disini"
+              required=""
+            />
+          </div>
+        </form>
+      </div>
+      <a class="flex items-center pb-3" href="#">
+        <svg
+          class="w-6 h-6 text-gray-800 dark:text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 18 20"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
+      <div class="mx-auto mb-4 max-w-screen-sm lg:mb-16">
+        <h2
+          class="mb-4 text-3xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+        >
+          Kapasitas BIN
+        </h2>
+      </div>
+      <div
+        class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      >
+        {% for bin in bins %}
+        <div
+          class="text-center text-gray-500 dark:text-gray-400 bg-gray-50 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-3"
+        >
+          <!-- <img
+          class="mx-auto mb-4 w-36 h-36 rounded-full"
+          src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png"
+          alt="Bonnie Avatar"
+        /> -->
+          <h3
+            class="mb-1 text-xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
+            <a href="#"
+              >{{ bin['id_bin'].upper() }} - {{ bin['kapasitas'] }} L</a
+            >
+          </h3>
+          <p class="text-left">Lokasi : {{ bin['lokasi'] }}</p>
+          <p class="text-left">Merk : {{ bin['merk'].upper() }}</p>
+
+          <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700 mt-3">
+            <div
+              class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+              style="width: {{((bin['tinggi_kosong'] - bin['tinggi_aktual']) /
+              bin['tinggi_kosong']) * 100}}%"
+            >
+              {{((bin['tinggi_kosong'] - bin['tinggi_aktual']) /
+              bin['tinggi_kosong']) * 100}}%
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% endblock %}
